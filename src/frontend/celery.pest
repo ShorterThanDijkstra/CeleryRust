@@ -1,0 +1,36 @@
+// // SPECIAL_CHARACTER = { "@" | "|" | "_" }
+// COLON = { ":" }
+// EQUAL = { "=" }
+// RARROW = { "*" }
+// // LARROW = { "<-" }
+// INT_TYPE = { "Int" }
+// BOOL_TYPE = { "Bool" }
+// TRUE = { "true" }
+// FALSE = { "false" }
+// LET = { "let" }
+// IN = { "in" }
+// // SEMICOLON = { ";" }
+// PLUS = { "+" }
+// ALPHABET = { ASCII_ALPHA }
+// IDENTIFIER = @{ ALPHABET ~ (ALPHABET | ASCII_DIGIT)* }
+
+// primary_type = { INT_TYPE | BOOL_TYPE }
+// compound_type = { primary_type ~ "->" ~ compound_type | primary_type}
+// type_decl = ${ SOI ~ compound_type ~ "}" }
+// func_decl = { type_decl ~ NEWLINE ~ IDENTIFIER ~ IDENTIFIER* ~ EQUAL ~ expr }
+
+// integer = @{ ASCII_DIGIT+ }
+// boolean = @{ TRUE | FALSE }
+
+// expr = { literal | var_decl | let_expr  }
+// literal = { integer | boolean }
+// var_decl = { LET ~ IDENTIFIER ~ EQUAL ~ expr }
+// let_expr = { LET ~ IDENTIFIER ~ EQUAL ~ expr  ~ IN ~ expr }
+// // sum_expr = { expr ~ PLUS ~ expr }
+
+// program = { SOI ~ func_decl+ ~ EOI}
+WHITESPACE = _{ " " | NEWLINE }
+INT_TYPE = { "Int" }
+BOOL_TYPE = { "Bool" }
+primitive_type = { INT_TYPE | BOOL_TYPE }
+compound_type = { primitive_type ~ "->" ~ compound_type | primitive_type}
